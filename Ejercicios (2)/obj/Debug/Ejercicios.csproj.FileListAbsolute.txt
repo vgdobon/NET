@@ -1,0 +1,7 @@
+I:\FORMATEA\FullStack\.NET\Ejercicios (2)\bin\Debug\Ejercicios.exe.config
+I:\FORMATEA\FullStack\.NET\Ejercicios (2)\bin\Debug\Ejercicios.exe
+I:\FORMATEA\FullStack\.NET\Ejercicios (2)\bin\Debug\Ejercicios.pdb
+I:\FORMATEA\FullStack\.NET\Ejercicios (2)\obj\Debug\Ejercicios.csprojAssemblyReference.cache
+I:\FORMATEA\FullStack\.NET\Ejercicios (2)\obj\Debug\Ejercicios.csproj.CoreCompileInputs.cache
+I:\FORMATEA\FullStack\.NET\Ejercicios (2)\obj\Debug\Ejercicios.exe
+I:\FORMATEA\FullStack\.NET\Ejercicios (2)\obj\Debug\Ejercicios.pdb

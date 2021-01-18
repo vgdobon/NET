@@ -1,0 +1,7 @@
+I:\FORMATEA\FullStack\.NET\GestionBanacaria\GestionBanacaria\bin\Debug\GestionBanacaria.exe.config
+I:\FORMATEA\FullStack\.NET\GestionBanacaria\GestionBanacaria\bin\Debug\GestionBanacaria.exe
+I:\FORMATEA\FullStack\.NET\GestionBanacaria\GestionBanacaria\bin\Debug\GestionBanacaria.pdb
+I:\FORMATEA\FullStack\.NET\GestionBanacaria\GestionBanacaria\obj\Debug\GestionBanacaria.csprojAssemblyReference.cache
+I:\FORMATEA\FullStack\.NET\GestionBanacaria\GestionBanacaria\obj\Debug\GestionBanacaria.csproj.CoreCompileInputs.cache
+I:\FORMATEA\FullStack\.NET\GestionBanacaria\GestionBanacaria\obj\Debug\GestionBanacaria.exe
+I:\FORMATEA\FullStack\.NET\GestionBanacaria\GestionBanacaria\obj\Debug\GestionBanacaria.pdb
