@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Agenda",
+    "\\Agenda\\Agenda"
   ],
-  "SelectedNode": "\\ConsoleApp1",
+  "SelectedNode": "\\Agenda\\Agenda\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -1,0 +1,2 @@
+I:\FORMATEA\FullStack\NET\Biblioteca\Biblioteca\obj\Debug\Biblioteca.csprojAssemblyReference.cache
+I:\FORMATEA\FullStack\NET\Biblioteca\Biblioteca\obj\Debug\Biblioteca.csproj.CoreCompileInputs.cache

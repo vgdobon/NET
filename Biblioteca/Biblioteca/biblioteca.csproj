@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A62ACDBB-8ECD-4C6E-B17D-34A9D0A26423}</ProjectGuid>
+    <ProjectGuid>{FA822799-E0BF-4293-BC9A-9D4ED5DA631A}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Agenda</RootNamespace>
-    <AssemblyName>Agenda</AssemblyName>
+    <RootNamespace>Biblioteca</RootNamespace>
+    <AssemblyName>Biblioteca</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,11 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Services\Agenda.cs" />
-    <Compile Include="DTOs\Contacto.cs" />
+    <Compile Include="DTOs\Libro.cs" />
     <Compile Include="Presentation\Menu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Biblioteca.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
