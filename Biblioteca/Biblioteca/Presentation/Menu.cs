@@ -1,14 +1,15 @@
-﻿using System;
+﻿using Biblioteca.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Threading;
-using Biblioteca = biblioteca.Services.Biblioteca;
+using Biblioteca = Biblioteca.Services.Biblioteca;
 
 
-namespace biblioteca.Presentation
+namespace Biblioteca.Presentation
 {
     public class Menu
     {
-        public Services.Biblioteca biblioteca= new Services.Biblioteca();
+        public Services.Biblioteca biblioteca = new Services.Biblioteca();
 
         public void MostrarMenu()
         {
@@ -39,6 +40,7 @@ namespace biblioteca.Presentation
                 switch (opcion)
                 {
                     case 1:
+
                         Console.WriteLine("Titulo:");
                         string titulo = Console.ReadLine();
                         Console.WriteLine("Autor:");
@@ -63,23 +65,111 @@ namespace biblioteca.Presentation
                         }
 
                         break;
+
                     case 2:
+
                         Console.WriteLine("Alquilar libro");
+
+                        foreach (Libro libro in biblioteca.mostrarLibros(false))
+
+                        {
+                            Console.WriteLine(libro);
+                        }
+
+                        Console.WriteLine("Elija el id del libro que quiere alquilar");
+                        bool idIsInt = int.TryParse(Console.ReadLine(), out int idAlquilar);
+                        bool alquilado=false;
+
+                        if (idIsInt)
+                        {
+                            foreach(Libro libro in biblioteca.biblioteca)
+                            {
+                                if(libro.Id == idAlquilar)
+                                {
+                                    libro.Alquilado = true;
+                                    alquilado = true;
+                                }
+                            }
+                        }
+
+
                         break;
+
                     case 3:
+
                         Console.WriteLine("Buscar libro");
+
+                        Console.Write("ID:");
+                        bool IdIsInt = int.TryParse(Console.ReadLine(), out int id);
+                        Libro buscado =  biblioteca.BuscarLibroPorId(id);
+
+                        if (buscado != null)
+                        {
+                            Console.WriteLine(buscado);
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Libro no encontrado");
+                        }
+
                         break;
+
                     case 4:
+
                         Console.WriteLine("Mostrar listado de todos los libros de un determinado género");
+
+                        Console.Write("Genero:");
+
+                        string genero = Console.ReadLine();
+
+                        foreach(Libro libro in biblioteca.MostrarLibrosPorGenero(genero)){
+                            Console.WriteLine(libro);
+                        }
+
                         break;
+
                     case 5:
                         Console.WriteLine("Mostrar listado de libros alquilados");
+
+                        foreach(Libro libro in biblioteca.mostrarLibros(true)){
+                            Console.WriteLine(libro);
+                        }
+
                         break;
+
                     case 6:
+
                         Console.WriteLine("Mostrar listado de libros disponibles (no alquilados)");
+
+                    
+
+                        foreach (Libro libro in biblioteca.mostrarLibros(false))
+                        {
+                            Console.WriteLine(libro);
+                        }
+
                         break;
+
                     case 7:
                         Console.WriteLine("Devolver un libro");
+
+                        foreach (Libro libro in biblioteca.mostrarLibros(true))
+                        {
+                            Console.WriteLine(libro);
+                        }
+
+                        Console.WriteLine("Indique el id del libro que va a devolver");
+
+                        bool idDevolverIsInt = int.TryParse(Console.ReadLine(), out int idDevolver);
+
+                        foreach (Libro libro in biblioteca.mostrarLibros(true))
+                        {
+                            if (libro.Id == idDevolver){
+                                libro.Alquilado = false;
+                            }
+                        }
+
                         break;
                     case 8:
                         Console.WriteLine("Salir");
@@ -123,6 +213,8 @@ namespace biblioteca.Presentation
 
         }
 
+
+        
         
     }
 }
