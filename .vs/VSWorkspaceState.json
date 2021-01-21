@@ -1,9 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Agenda",
-    "\\Agenda\\Agenda"
+    "\\Agenda\\Agenda",
+    "\\Agenda\\Agenda\\Presentation"
   ],
-  "SelectedNode": "\\Agenda\\Agenda\\Program.cs",
+  "SelectedNode": "\\Agenda",
   "PreviewInSolutionExplorer": false
 }
