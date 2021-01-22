@@ -1,2 +1,9 @@
 I:\FORMATEA\FullStack\NET\Biblioteca\Biblioteca\obj\Debug\Biblioteca.csprojAssemblyReference.cache
 I:\FORMATEA\FullStack\NET\Biblioteca\Biblioteca\obj\Debug\Biblioteca.csproj.CoreCompileInputs.cache
+C:\Users\tecnara\Desktop\Victor\Biblioteca\Biblioteca\obj\Debug\biblioteca.csprojAssemblyReference.cache
+C:\Users\tecnara\Desktop\Victor\Biblioteca\Biblioteca\obj\Debug\biblioteca.csproj.CoreCompileInputs.cache
+C:\Users\tecnara\Desktop\Victor\Biblioteca\Biblioteca\bin\Debug\Biblioteca.exe.config
+C:\Users\tecnara\Desktop\Victor\Biblioteca\Biblioteca\bin\Debug\Biblioteca.exe
+C:\Users\tecnara\Desktop\Victor\Biblioteca\Biblioteca\bin\Debug\Biblioteca.pdb
+C:\Users\tecnara\Desktop\Victor\Biblioteca\Biblioteca\obj\Debug\Biblioteca.exe
+C:\Users\tecnara\Desktop\Victor\Biblioteca\Biblioteca\obj\Debug\Biblioteca.pdb

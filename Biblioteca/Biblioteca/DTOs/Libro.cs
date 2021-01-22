@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace biblioteca.DTOs
+namespace Biblioteca.DTOs
 {
     public class Libro
     {
@@ -27,5 +27,12 @@ namespace biblioteca.DTOs
             Id = Incrementer;
 
         }
+
+        public override string ToString()
+        { 
+            return $"Id:{Id} \n Autor:{Author} \n Titulo:{Title} \n Año:{Year} \n Categoria: {Category} \n Alquilado:{Alquilado} \n \n";
+        }
+
+
     }
 }

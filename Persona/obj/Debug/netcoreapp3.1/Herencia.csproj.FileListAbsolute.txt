@@ -1,0 +1,13 @@
+I:\FORMATEA\FullStack\NET\Persona\bin\Debug\netcoreapp3.1\Herencia.exe
+I:\FORMATEA\FullStack\NET\Persona\bin\Debug\netcoreapp3.1\Herencia.deps.json
+I:\FORMATEA\FullStack\NET\Persona\bin\Debug\netcoreapp3.1\Herencia.runtimeconfig.json
+I:\FORMATEA\FullStack\NET\Persona\bin\Debug\netcoreapp3.1\Herencia.runtimeconfig.dev.json
+I:\FORMATEA\FullStack\NET\Persona\bin\Debug\netcoreapp3.1\Herencia.dll
+I:\FORMATEA\FullStack\NET\Persona\bin\Debug\netcoreapp3.1\Herencia.pdb
+I:\FORMATEA\FullStack\NET\Persona\obj\Debug\netcoreapp3.1\Herencia.csprojAssemblyReference.cache
+I:\FORMATEA\FullStack\NET\Persona\obj\Debug\netcoreapp3.1\Herencia.AssemblyInfoInputs.cache
+I:\FORMATEA\FullStack\NET\Persona\obj\Debug\netcoreapp3.1\Herencia.AssemblyInfo.cs
+I:\FORMATEA\FullStack\NET\Persona\obj\Debug\netcoreapp3.1\Herencia.csproj.CoreCompileInputs.cache
+I:\FORMATEA\FullStack\NET\Persona\obj\Debug\netcoreapp3.1\Herencia.dll
+I:\FORMATEA\FullStack\NET\Persona\obj\Debug\netcoreapp3.1\Herencia.pdb
+I:\FORMATEA\FullStack\NET\Persona\obj\Debug\netcoreapp3.1\Herencia.genruntimeconfig.cache

@@ -1,0 +1,2 @@
+I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\obj\Release\GestiónEmpleados.csprojAssemblyReference.cache
+I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\obj\Release\GestiónEmpleados.csproj.CoreCompileInputs.cache

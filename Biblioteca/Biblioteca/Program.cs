@@ -1,4 +1,14 @@
+<<<<<<< HEAD
 ﻿using biblioteca.Presentation;
+=======
+﻿using Biblioteca.Presentation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Biblioteca.Presentation;
+>>>>>>> e42deddca1487aed03d849559af1bc44f49ac888
 
 //Programa 15: Gestión de una biblioteca
 //Escribir un programa desde el cual se pueda gestionar una biblioteca. Al entrar nos mostrará las

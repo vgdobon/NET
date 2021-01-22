@@ -1,0 +1,7 @@
+I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\bin\Debug\GestiónEmpleados.exe.config
+I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\bin\Debug\GestiónEmpleados.exe
+I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\bin\Debug\GestiónEmpleados.pdb
+I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\obj\Debug\GestiónEmpleados.csprojAssemblyReference.cache
+I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\obj\Debug\GestiónEmpleados.csproj.CoreCompileInputs.cache
+I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\obj\Debug\GestiónEmpleados.exe
+I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\obj\Debug\GestiónEmpleados.pdb

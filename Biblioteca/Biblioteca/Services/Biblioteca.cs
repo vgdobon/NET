@@ -1,7 +1,8 @@
-﻿using biblioteca.DTOs;
+﻿using Biblioteca.DTOs;
+using System;
 using System.Collections.Generic;
 
-namespace biblioteca.Services
+namespace Biblioteca.Services
 {
     public class Biblioteca
     {
@@ -24,5 +25,44 @@ namespace biblioteca.Services
 
             return false;
         }
+
+        public List<Libro> mostrarLibros(bool alquilado)
+        {
+            List<Libro> listadoLibros = new List<Libro>();
+
+            foreach (Libro libro in biblioteca)
+            {
+                if (libro.Alquilado == alquilado)
+                    listadoLibros.Add(libro);
+            }
+
+            return listadoLibros;
+        }
+
+        public List<Libro> MostrarLibrosPorGenero(string genero)
+        {
+            List<Libro> listadoPorGenero = new List<Libro>();
+            foreach (Libro libro in biblioteca)
+            {
+                if (libro.Category.ToLower() == genero.ToLower())
+                    listadoPorGenero.Add(libro);
+            }
+
+            return listadoPorGenero;
+        }
+
+        public Libro BuscarLibroPorId(int i)
+        {
+            foreach(Libro libro in biblioteca)
+            {
+                if (libro.Id == i)
+                {
+                    return libro;
+                }
+            }
+
+            return null;
+        }
+
     }
 }
