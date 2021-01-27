@@ -1,9 +1,8 @@
 {
   "ExpandedNodes": [
-    "",
     "\\Biblioteca\\Biblioteca",
+    "\\Biblioteca\\Biblioteca\\DTOs",
     "\\Biblioteca\\Biblioteca\\Services"
   ],
-  "SelectedNode": "\\Agenda",
   "PreviewInSolutionExplorer": false
 }
