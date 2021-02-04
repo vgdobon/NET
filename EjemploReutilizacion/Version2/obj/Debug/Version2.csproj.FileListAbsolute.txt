@@ -1,0 +1,7 @@
+C:\Users\Sergio\source\repos\EjemploReutilizacion\Version2\bin\Debug\Version2.exe.config
+C:\Users\Sergio\source\repos\EjemploReutilizacion\Version2\bin\Debug\Version2.exe
+C:\Users\Sergio\source\repos\EjemploReutilizacion\Version2\bin\Debug\Version2.pdb
+C:\Users\Sergio\source\repos\EjemploReutilizacion\Version2\obj\Debug\Version2.csprojAssemblyReference.cache
+C:\Users\Sergio\source\repos\EjemploReutilizacion\Version2\obj\Debug\Version2.csproj.CoreCompileInputs.cache
+C:\Users\Sergio\source\repos\EjemploReutilizacion\Version2\obj\Debug\Version2.exe
+C:\Users\Sergio\source\repos\EjemploReutilizacion\Version2\obj\Debug\Version2.pdb

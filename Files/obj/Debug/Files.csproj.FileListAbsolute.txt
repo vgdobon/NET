@@ -1,0 +1,7 @@
+I:\FORMATEA\FullStack\NET\Files\bin\Debug\Files.exe.config
+I:\FORMATEA\FullStack\NET\Files\bin\Debug\Files.exe
+I:\FORMATEA\FullStack\NET\Files\bin\Debug\Files.pdb
+I:\FORMATEA\FullStack\NET\Files\obj\Debug\Files.csprojAssemblyReference.cache
+I:\FORMATEA\FullStack\NET\Files\obj\Debug\Files.csproj.CoreCompileInputs.cache
+I:\FORMATEA\FullStack\NET\Files\obj\Debug\Files.exe
+I:\FORMATEA\FullStack\NET\Files\obj\Debug\Files.pdb
