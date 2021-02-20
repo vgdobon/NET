@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3d0c7ce49ed141a0985bbb091d224231" Name="Diagram1">
+        <EntityTypeShape EntityType="GestionTrabajadoresCeste2021Model.JefesEquipo" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionTrabajadoresCeste2021Model.Tecnicos" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionTrabajadoresCeste2021Model.Trabajadores" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionTrabajadoresCeste2021Model.TrabajadoresDTecnico" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="GestionTrabajadoresCeste2021Model.FK_JefesEquipo_TrabajadoresDTecnico" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionTrabajadoresCeste2021Model.FK_Tecnicos_JefesEquipo" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionTrabajadoresCeste2021Model.FK_Tecnicos_TrabajadoresDTecnico" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionTrabajadoresCeste2021Model.FK_TrabajadoresDTecnico_TrabajadoresDTecnico" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

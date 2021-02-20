@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GestionTrabajadoresCeste2021ModelStoreContainer" CdmEntityContainer="GestionTrabajadoresCeste2021Entities">
+    <EntitySetMapping Name="JefesEquipo">
+      <EntityTypeMapping TypeName="GestionTrabajadoresCeste2021Model.JefesEquipo">
+        <MappingFragment StoreEntitySet="JefesEquipo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TrabajadorDTecnicoId" ColumnName="TrabajadorDTecnicoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tecnicos">
+      <EntityTypeMapping TypeName="GestionTrabajadoresCeste2021Model.Tecnicos">
+        <MappingFragment StoreEntitySet="Tecnicos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TrabajadorDTecnicoId" ColumnName="TrabajadorDTecnicoId" />
+          <ScalarProperty Name="JefeEquipoId" ColumnName="JefeEquipoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trabajadores">
+      <EntityTypeMapping TypeName="GestionTrabajadoresCeste2021Model.Trabajadores">
+        <MappingFragment StoreEntitySet="Trabajadores">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Dni" ColumnName="Dni" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+          <ScalarProperty Name="Borrado" ColumnName="Borrado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrabajadoresDTecnico">
+      <EntityTypeMapping TypeName="GestionTrabajadoresCeste2021Model.TrabajadoresDTecnico">
+        <MappingFragment StoreEntitySet="TrabajadoresDTecnico">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TrabajadorId" ColumnName="TrabajadorId" />
+          <ScalarProperty Name="AnyosExperiencia" ColumnName="AnyosExperiencia" />
+          <ScalarProperty Name="Tecnologia" ColumnName="Tecnologia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

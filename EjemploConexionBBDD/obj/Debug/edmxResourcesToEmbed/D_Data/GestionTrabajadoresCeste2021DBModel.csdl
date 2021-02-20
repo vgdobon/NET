@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GestionTrabajadoresCeste2021Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="JefesEquipo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TrabajadorDTecnicoId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TrabajadoresDTecnico" Relationship="Self.FK_JefesEquipo_TrabajadoresDTecnico" FromRole="JefesEquipo" ToRole="TrabajadoresDTecnico" />
+  </EntityType>
+  <EntityType Name="Tecnicos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TrabajadorDTecnicoId" Type="Int32" Nullable="false" />
+    <Property Name="JefeEquipoId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Trabajadores" Relationship="Self.FK_Tecnicos_JefesEquipo" FromRole="Tecnicos" ToRole="Trabajadores" />
+    <NavigationProperty Name="TrabajadoresDTecnico" Relationship="Self.FK_Tecnicos_TrabajadoresDTecnico" FromRole="Tecnicos" ToRole="TrabajadoresDTecnico" />
+  </EntityType>
+  <EntityType Name="Trabajadores">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dni" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FechaBaja" Type="DateTime" Precision="3" />
+    <Property Name="Borrado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Tecnicos" Relationship="Self.FK_Tecnicos_JefesEquipo" FromRole="Trabajadores" ToRole="Tecnicos" />
+    <NavigationProperty Name="TrabajadoresDTecnico" Relationship="Self.FK_TrabajadoresDTecnico_TrabajadoresDTecnico" FromRole="Trabajadores" ToRole="TrabajadoresDTecnico" />
+  </EntityType>
+  <EntityType Name="TrabajadoresDTecnico">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TrabajadorId" Type="Int32" Nullable="false" />
+    <Property Name="AnyosExperiencia" Type="Int32" Nullable="false" />
+    <Property Name="Tecnologia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="JefesEquipo" Relationship="Self.FK_JefesEquipo_TrabajadoresDTecnico" FromRole="TrabajadoresDTecnico" ToRole="JefesEquipo" />
+    <NavigationProperty Name="Tecnicos" Relationship="Self.FK_Tecnicos_TrabajadoresDTecnico" FromRole="TrabajadoresDTecnico" ToRole="Tecnicos" />
+    <NavigationProperty Name="Trabajadores" Relationship="Self.FK_TrabajadoresDTecnico_TrabajadoresDTecnico" FromRole="TrabajadoresDTecnico" ToRole="Trabajadores" />
+  </EntityType>
+  <Association Name="FK_JefesEquipo_TrabajadoresDTecnico">
+    <End Role="TrabajadoresDTecnico" Type="Self.TrabajadoresDTecnico" Multiplicity="1" />
+    <End Role="JefesEquipo" Type="Self.JefesEquipo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrabajadoresDTecnico">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JefesEquipo">
+        <PropertyRef Name="TrabajadorDTecnicoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tecnicos_JefesEquipo">
+    <End Role="Trabajadores" Type="Self.Trabajadores" Multiplicity="1" />
+    <End Role="Tecnicos" Type="Self.Tecnicos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trabajadores">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tecnicos">
+        <PropertyRef Name="JefeEquipoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tecnicos_TrabajadoresDTecnico">
+    <End Role="TrabajadoresDTecnico" Type="Self.TrabajadoresDTecnico" Multiplicity="1" />
+    <End Role="Tecnicos" Type="Self.Tecnicos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrabajadoresDTecnico">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tecnicos">
+        <PropertyRef Name="TrabajadorDTecnicoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrabajadoresDTecnico_TrabajadoresDTecnico">
+    <End Role="Trabajadores" Type="Self.Trabajadores" Multiplicity="1" />
+    <End Role="TrabajadoresDTecnico" Type="Self.TrabajadoresDTecnico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trabajadores">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrabajadoresDTecnico">
+        <PropertyRef Name="TrabajadorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GestionTrabajadoresCeste2021Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="JefesEquipo" EntityType="Self.JefesEquipo" />
+    <EntitySet Name="Tecnicos" EntityType="Self.Tecnicos" />
+    <EntitySet Name="Trabajadores" EntityType="Self.Trabajadores" />
+    <EntitySet Name="TrabajadoresDTecnico" EntityType="Self.TrabajadoresDTecnico" />
+    <AssociationSet Name="FK_JefesEquipo_TrabajadoresDTecnico" Association="Self.FK_JefesEquipo_TrabajadoresDTecnico">
+      <End Role="TrabajadoresDTecnico" EntitySet="TrabajadoresDTecnico" />
+      <End Role="JefesEquipo" EntitySet="JefesEquipo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tecnicos_JefesEquipo" Association="Self.FK_Tecnicos_JefesEquipo">
+      <End Role="Trabajadores" EntitySet="Trabajadores" />
+      <End Role="Tecnicos" EntitySet="Tecnicos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tecnicos_TrabajadoresDTecnico" Association="Self.FK_Tecnicos_TrabajadoresDTecnico">
+      <End Role="TrabajadoresDTecnico" EntitySet="TrabajadoresDTecnico" />
+      <End Role="Tecnicos" EntitySet="Tecnicos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrabajadoresDTecnico_TrabajadoresDTecnico" Association="Self.FK_TrabajadoresDTecnico_TrabajadoresDTecnico">
+      <End Role="Trabajadores" EntitySet="Trabajadores" />
+      <End Role="TrabajadoresDTecnico" EntitySet="TrabajadoresDTecnico" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

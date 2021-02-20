@@ -33,11 +33,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +58,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="data\GestionTrabajadoresEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionTrabajadoresEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\GestionTrabajadoresEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionTrabajadoresEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\GestionTrabajadoresEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionTrabajadoresEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="data\JefeEquipos.cs">
+      <DependentUpon>GestionTrabajadoresEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\sysdiagrams.cs">
+      <DependentUpon>GestionTrabajadoresEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\Tecnicos.cs">
+      <DependentUpon>GestionTrabajadoresEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\Trabajadores.cs">
+      <DependentUpon>GestionTrabajadoresEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\TrabajoresDT.cs">
+      <DependentUpon>GestionTrabajadoresEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="DTOs\InfoComercial.cs" />
     <Compile Include="DTOs\InfoDepTecnologia.cs" />
     <Compile Include="DTOs\InfoDepVentas.cs" />
@@ -61,8 +103,32 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="data\GestionTrabajadoresEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GestionTrabajadoresEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="data\GestionTrabajadoresEntities.edmx.diagram">
+      <DependentUpon>GestionTrabajadoresEntities.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="data\GestionTrabajadoresEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GestionTrabajadoresEntities.edmx</DependentUpon>
+      <LastGenOutput>GestionTrabajadoresEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="data\GestionTrabajadoresEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GestionTrabajadoresEntities.edmx</DependentUpon>
+      <LastGenOutput>GestionTrabajadoresEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

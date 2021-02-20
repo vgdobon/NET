@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GestionTrabajadoresCeste2021Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="JefesEquipo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrabajadorDTecnicoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tecnicos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrabajadorDTecnicoId" Type="int" Nullable="false" />
+          <Property Name="JefeEquipoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Trabajadores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dni" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellidos" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="datetime" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaBaja" Type="datetime" />
+          <Property Name="Borrado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrabajadoresDTecnico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrabajadorId" Type="int" Nullable="false" />
+          <Property Name="AnyosExperiencia" Type="int" Nullable="false" />
+          <Property Name="Tecnologia" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_JefesEquipo_TrabajadoresDTecnico">
+          <End Role="TrabajadoresDTecnico" Type="Self.TrabajadoresDTecnico" Multiplicity="1" />
+          <End Role="JefesEquipo" Type="Self.JefesEquipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrabajadoresDTecnico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JefesEquipo">
+              <PropertyRef Name="TrabajadorDTecnicoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tecnicos_JefesEquipo">
+          <End Role="Trabajadores" Type="Self.Trabajadores" Multiplicity="1" />
+          <End Role="Tecnicos" Type="Self.Tecnicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajadores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tecnicos">
+              <PropertyRef Name="JefeEquipoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tecnicos_TrabajadoresDTecnico">
+          <End Role="TrabajadoresDTecnico" Type="Self.TrabajadoresDTecnico" Multiplicity="1" />
+          <End Role="Tecnicos" Type="Self.Tecnicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrabajadoresDTecnico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tecnicos">
+              <PropertyRef Name="TrabajadorDTecnicoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajadoresDTecnico_TrabajadoresDTecnico">
+          <End Role="Trabajadores" Type="Self.Trabajadores" Multiplicity="1" />
+          <End Role="TrabajadoresDTecnico" Type="Self.TrabajadoresDTecnico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajadores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrabajadoresDTecnico">
+              <PropertyRef Name="TrabajadorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestionTrabajadoresCeste2021ModelStoreContainer">
+          <EntitySet Name="JefesEquipo" EntityType="Self.JefesEquipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tecnicos" EntityType="Self.Tecnicos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trabajadores" EntityType="Self.Trabajadores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrabajadoresDTecnico" EntityType="Self.TrabajadoresDTecnico" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_JefesEquipo_TrabajadoresDTecnico" Association="Self.FK_JefesEquipo_TrabajadoresDTecnico">
+            <End Role="TrabajadoresDTecnico" EntitySet="TrabajadoresDTecnico" />
+            <End Role="JefesEquipo" EntitySet="JefesEquipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tecnicos_JefesEquipo" Association="Self.FK_Tecnicos_JefesEquipo">
+            <End Role="Trabajadores" EntitySet="Trabajadores" />
+            <End Role="Tecnicos" EntitySet="Tecnicos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tecnicos_TrabajadoresDTecnico" Association="Self.FK_Tecnicos_TrabajadoresDTecnico">
+            <End Role="TrabajadoresDTecnico" EntitySet="TrabajadoresDTecnico" />
+            <End Role="Tecnicos" EntitySet="Tecnicos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajadoresDTecnico_TrabajadoresDTecnico" Association="Self.FK_TrabajadoresDTecnico_TrabajadoresDTecnico">
+            <End Role="Trabajadores" EntitySet="Trabajadores" />
+            <End Role="TrabajadoresDTecnico" EntitySet="TrabajadoresDTecnico" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GestionTrabajadoresCeste2021Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="JefesEquipo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrabajadorDTecnicoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TrabajadoresDTecnico" Relationship="Self.FK_JefesEquipo_TrabajadoresDTecnico" FromRole="JefesEquipo" ToRole="TrabajadoresDTecnico" />
+        </EntityType>
+        <EntityType Name="Tecnicos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrabajadorDTecnicoId" Type="Int32" Nullable="false" />
+          <Property Name="JefeEquipoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Trabajadores" Relationship="Self.FK_Tecnicos_JefesEquipo" FromRole="Tecnicos" ToRole="Trabajadores" />
+          <NavigationProperty Name="TrabajadoresDTecnico" Relationship="Self.FK_Tecnicos_TrabajadoresDTecnico" FromRole="Tecnicos" ToRole="TrabajadoresDTecnico" />
+        </EntityType>
+        <EntityType Name="Trabajadores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dni" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaBaja" Type="DateTime" Precision="3" />
+          <Property Name="Borrado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Tecnicos" Relationship="Self.FK_Tecnicos_JefesEquipo" FromRole="Trabajadores" ToRole="Tecnicos" />
+          <NavigationProperty Name="TrabajadoresDTecnico" Relationship="Self.FK_TrabajadoresDTecnico_TrabajadoresDTecnico" FromRole="Trabajadores" ToRole="TrabajadoresDTecnico" />
+        </EntityType>
+        <EntityType Name="TrabajadoresDTecnico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrabajadorId" Type="Int32" Nullable="false" />
+          <Property Name="AnyosExperiencia" Type="Int32" Nullable="false" />
+          <Property Name="Tecnologia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="JefesEquipo" Relationship="Self.FK_JefesEquipo_TrabajadoresDTecnico" FromRole="TrabajadoresDTecnico" ToRole="JefesEquipo" />
+          <NavigationProperty Name="Tecnicos" Relationship="Self.FK_Tecnicos_TrabajadoresDTecnico" FromRole="TrabajadoresDTecnico" ToRole="Tecnicos" />
+          <NavigationProperty Name="Trabajadores" Relationship="Self.FK_TrabajadoresDTecnico_TrabajadoresDTecnico" FromRole="TrabajadoresDTecnico" ToRole="Trabajadores" />
+        </EntityType>
+        <Association Name="FK_JefesEquipo_TrabajadoresDTecnico">
+          <End Role="TrabajadoresDTecnico" Type="Self.TrabajadoresDTecnico" Multiplicity="1" />
+          <End Role="JefesEquipo" Type="Self.JefesEquipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrabajadoresDTecnico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JefesEquipo">
+              <PropertyRef Name="TrabajadorDTecnicoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tecnicos_JefesEquipo">
+          <End Role="Trabajadores" Type="Self.Trabajadores" Multiplicity="1" />
+          <End Role="Tecnicos" Type="Self.Tecnicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajadores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tecnicos">
+              <PropertyRef Name="JefeEquipoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tecnicos_TrabajadoresDTecnico">
+          <End Role="TrabajadoresDTecnico" Type="Self.TrabajadoresDTecnico" Multiplicity="1" />
+          <End Role="Tecnicos" Type="Self.Tecnicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrabajadoresDTecnico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tecnicos">
+              <PropertyRef Name="TrabajadorDTecnicoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajadoresDTecnico_TrabajadoresDTecnico">
+          <End Role="Trabajadores" Type="Self.Trabajadores" Multiplicity="1" />
+          <End Role="TrabajadoresDTecnico" Type="Self.TrabajadoresDTecnico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajadores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrabajadoresDTecnico">
+              <PropertyRef Name="TrabajadorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestionTrabajadoresCeste2021Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="JefesEquipo" EntityType="Self.JefesEquipo" />
+          <EntitySet Name="Tecnicos" EntityType="Self.Tecnicos" />
+          <EntitySet Name="Trabajadores" EntityType="Self.Trabajadores" />
+          <EntitySet Name="TrabajadoresDTecnico" EntityType="Self.TrabajadoresDTecnico" />
+          <AssociationSet Name="FK_JefesEquipo_TrabajadoresDTecnico" Association="Self.FK_JefesEquipo_TrabajadoresDTecnico">
+            <End Role="TrabajadoresDTecnico" EntitySet="TrabajadoresDTecnico" />
+            <End Role="JefesEquipo" EntitySet="JefesEquipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tecnicos_JefesEquipo" Association="Self.FK_Tecnicos_JefesEquipo">
+            <End Role="Trabajadores" EntitySet="Trabajadores" />
+            <End Role="Tecnicos" EntitySet="Tecnicos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tecnicos_TrabajadoresDTecnico" Association="Self.FK_Tecnicos_TrabajadoresDTecnico">
+            <End Role="TrabajadoresDTecnico" EntitySet="TrabajadoresDTecnico" />
+            <End Role="Tecnicos" EntitySet="Tecnicos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajadoresDTecnico_TrabajadoresDTecnico" Association="Self.FK_TrabajadoresDTecnico_TrabajadoresDTecnico">
+            <End Role="Trabajadores" EntitySet="Trabajadores" />
+            <End Role="TrabajadoresDTecnico" EntitySet="TrabajadoresDTecnico" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GestionTrabajadoresCeste2021ModelStoreContainer" CdmEntityContainer="GestionTrabajadoresCeste2021Entities">
+          <EntitySetMapping Name="JefesEquipo">
+            <EntityTypeMapping TypeName="GestionTrabajadoresCeste2021Model.JefesEquipo">
+              <MappingFragment StoreEntitySet="JefesEquipo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TrabajadorDTecnicoId" ColumnName="TrabajadorDTecnicoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tecnicos">
+            <EntityTypeMapping TypeName="GestionTrabajadoresCeste2021Model.Tecnicos">
+              <MappingFragment StoreEntitySet="Tecnicos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TrabajadorDTecnicoId" ColumnName="TrabajadorDTecnicoId" />
+                <ScalarProperty Name="JefeEquipoId" ColumnName="JefeEquipoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trabajadores">
+            <EntityTypeMapping TypeName="GestionTrabajadoresCeste2021Model.Trabajadores">
+              <MappingFragment StoreEntitySet="Trabajadores">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Dni" ColumnName="Dni" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+                <ScalarProperty Name="Borrado" ColumnName="Borrado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrabajadoresDTecnico">
+            <EntityTypeMapping TypeName="GestionTrabajadoresCeste2021Model.TrabajadoresDTecnico">
+              <MappingFragment StoreEntitySet="TrabajadoresDTecnico">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TrabajadorId" ColumnName="TrabajadorId" />
+                <ScalarProperty Name="AnyosExperiencia" ColumnName="AnyosExperiencia" />
+                <ScalarProperty Name="Tecnologia" ColumnName="Tecnologia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

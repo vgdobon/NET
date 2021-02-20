@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="trabajadoresModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="JefeEquipos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="IdDT" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tecnicos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="IdDT" Type="int" Nullable="false" />
+    <Property Name="IdJefeEquipo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Trabajadores">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Dni" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Apellidos" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FechaNacimiento" Type="datetime" Nullable="false" />
+    <Property Name="Direccion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FechaBaja" Type="datetime" />
+    <Property Name="Borrado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TrabajoresDT">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="IdTrabajador" Type="int" Nullable="false" />
+    <Property Name="AnnosExperiencia" Type="int" Nullable="false" />
+    <Property Name="Tecnologia" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_JefeEquipo_TrabajoresDT">
+    <End Role="TrabajoresDT" Type="Self.TrabajoresDT" Multiplicity="1" />
+    <End Role="JefeEquipos" Type="Self.JefeEquipos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrabajoresDT">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JefeEquipos">
+        <PropertyRef Name="IdDT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tecnicos_JefeEquipos">
+    <End Role="JefeEquipos" Type="Self.JefeEquipos" Multiplicity="1" />
+    <End Role="Tecnicos" Type="Self.Tecnicos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JefeEquipos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tecnicos">
+        <PropertyRef Name="IdJefeEquipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tecnicos_TrabajoresDT">
+    <End Role="TrabajoresDT" Type="Self.TrabajoresDT" Multiplicity="1" />
+    <End Role="Tecnicos" Type="Self.Tecnicos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrabajoresDT">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tecnicos">
+        <PropertyRef Name="IdDT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrabajoresDT_Trabajadores">
+    <End Role="Trabajadores" Type="Self.Trabajadores" Multiplicity="1" />
+    <End Role="TrabajoresDT" Type="Self.TrabajoresDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trabajadores">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrabajoresDT">
+        <PropertyRef Name="IdTrabajador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="trabajadoresModelStoreContainer">
+    <EntitySet Name="JefeEquipos" EntityType="Self.JefeEquipos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tecnicos" EntityType="Self.Tecnicos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Trabajadores" EntityType="Self.Trabajadores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrabajoresDT" EntityType="Self.TrabajoresDT" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_JefeEquipo_TrabajoresDT" Association="Self.FK_JefeEquipo_TrabajoresDT">
+      <End Role="TrabajoresDT" EntitySet="TrabajoresDT" />
+      <End Role="JefeEquipos" EntitySet="JefeEquipos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tecnicos_JefeEquipos" Association="Self.FK_Tecnicos_JefeEquipos">
+      <End Role="JefeEquipos" EntitySet="JefeEquipos" />
+      <End Role="Tecnicos" EntitySet="Tecnicos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tecnicos_TrabajoresDT" Association="Self.FK_Tecnicos_TrabajoresDT">
+      <End Role="TrabajoresDT" EntitySet="TrabajoresDT" />
+      <End Role="Tecnicos" EntitySet="Tecnicos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrabajoresDT_Trabajadores" Association="Self.FK_TrabajoresDT_Trabajadores">
+      <End Role="Trabajadores" EntitySet="Trabajadores" />
+      <End Role="TrabajoresDT" EntitySet="TrabajoresDT" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

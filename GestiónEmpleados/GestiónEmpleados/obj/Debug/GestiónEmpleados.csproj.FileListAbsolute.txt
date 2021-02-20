@@ -1,7 +1,15 @@
 I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\bin\Debug\GestiónEmpleados.exe.config
 I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\bin\Debug\GestiónEmpleados.exe
 I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\bin\Debug\GestiónEmpleados.pdb
-I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\obj\Debug\GestiónEmpleados.csprojAssemblyReference.cache
 I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\obj\Debug\GestiónEmpleados.csproj.CoreCompileInputs.cache
 I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\obj\Debug\GestiónEmpleados.exe
 I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\obj\Debug\GestiónEmpleados.pdb
+I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\bin\Debug\AutoMapper.dll
+I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\bin\Debug\EntityFramework.dll
+I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\bin\Debug\EntityFramework.SqlServer.dll
+I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\bin\Debug\Newtonsoft.Json.dll
+I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\bin\Debug\AutoMapper.xml
+I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\bin\Debug\EntityFramework.xml
+I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\bin\Debug\EntityFramework.SqlServer.xml
+I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\bin\Debug\Newtonsoft.Json.xml
+I:\FORMATEA\FullStack\NET\GestiónEmpleados\GestiónEmpleados\obj\Debug\GestiónEmpleados.csproj.CopyComplete
