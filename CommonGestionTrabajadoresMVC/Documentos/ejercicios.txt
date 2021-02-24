@@ -1,0 +1,55 @@
+
+Partimos de proyecto MVC con:
+- Entity Data Model apuntando a la base de datos deseada
+- DTOs que nos interesará usar para añadir información a las vistas o realizar operaciones en la BD
+- Actualización mediante Nuget de la versión de Bootstrap 3 (por defecto) a la versión 4
+
+Ejercicio 1
+Modificar el archivo _Layout.cshtml para adaptar el HTML del menú superior (generado para Bootstrap 3) a Bootstrap 4
+
+Ejercicio 2
+Crear CRUD de JefesEquipo, agregando Controlador con vistas que usa la Entity JefesEquipo.
+Probar que no funciona como deseamos ninguna de las acciones del controlador, y pensar por qué
+
+Ejercicio 3
+Adaptar el código autogenerado al crear el controlador de forma que:
+- todas las acciones del controlador que devuelvan una vista que tenga como modelo un DTO (o lista de DTOs),
+  irán a buscar la Entity (o lista de Entities) a la BD y luego harán un mapeo a DTO (o lista de DTOs),
+  para poder pasar ese DTO (o lista de DTOs) como parámetro de la función que carga la vista.
+
+- todas las vistas que usen como modelo una Entity (o lista de Entities),
+  pasarán a usar como modelo un DTO (o lista de DTOs).
+
+- todas las acciones del controlador que reciban como parámetro una Entity, pasarán a recibir como parámetro un DTO.
+  Si es acción de crear nuevo jefe de equipo, se creará una nueva entity y se mapearán a ella los campos del DTO.
+  Si es acción de modificar jefe de equipo existente, se traerá de BD la Entity con sus valores antiguos y se
+  mapeará esa entity con los campos del DTO, que contendran los valores nuevos.
+  Si es acción de borrar jefe de equipo existente, se traerá de BD la Entity a borrar y: si es borrado físico, se
+  eliminará; si es borrado lógico, se modificará el campo booleano que indique que el jefe de equipo está borrado
+
+Si las adaptaciones anteriores se han realizado correctamente, el CRUD será funcional.
+
+Ejercicio 4
+Crear un filtro genérico de jefes de equipo:
+- Crear una acción de controlador 'Lista' que reciba como parámetro un string 'filtro':
+  - si el valor de 'filtro' es distinto de null o de "", se obtiene de BD la lista de jefes de equipo que
+    contengan en el nombre o en el apellido el valor de 'filtro'
+  - si el valor de 'filtro' es null o "", se obtiene de BD la lista de jefes de equipo completa, sin filtros
+    (salvo el filtro de borrado si hay borrado lógico).
+  - crear vista asociada a la nueva acción de controlador como vista parcial:
+    - con un modelo de clase List<JefeEquipoDTO>
+    - con Layout=null
+    - sin nada de código, por el momento
+  - desde la acción de controlador 'Lista', llamar a la vista parcial recién creada pasándole como modelo el
+    listado obtenido según el valor de 'filtro'
+- Añadir como código de la vista parcial 'Lista' creada en el paso anterior, el HTML de la tabla que muestra
+  los jefes de equipo en la vista 'Index.cshtml', y eliminar el código de esa vista 'Index'
+- Añadir en el hueco dejado en la vista 'Index' un div con id="listado" que contenga en su interior la llamada a la
+  vista parcial 'Lista', pasándole como parámetro el propio modelo de la vista 'Index'.
+- añadir en la vista Index tres elementos HTML: un label, un input de tipo texto y un botón.
+- asociar al botón una función de javascript llamada FiltrarDatos que se ejecute cuando se haga click en él
+- crear un archivo js con una función FiltrarDatos que:
+  - ejecute una petición Post a '/JefesEquipo/Lista', pasándole como parámetro 'filtro' el valor
+    del input de tipo texto añadido anteriormente junto al botón.
+  - reciba del servidor la respuesta a la petición, y la añada como HTML al div con id=listado.
+- añadir ese archivo js en la sección Scripts de la vista 'Index' (si no existe la sección, crearla)

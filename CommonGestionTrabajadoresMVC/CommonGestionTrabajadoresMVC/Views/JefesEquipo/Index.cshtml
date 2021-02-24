@@ -1,0 +1,57 @@
+﻿@model IEnumerable<CommonGestionTrabajadoresMVC.DTOs.JefeEquipoDTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ListaTecnologias)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ListaProyectos)
+        </th>
+       
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+       
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellidos)
+            </td>
+            
+            <td>
+                @{string nombresTecnologias = string.Join(", ", item.ListaTecnologias.Select(x => x.Nombre).ToList()); }
+                @Html.DisplayFor(modelItem => nombresTecnologias)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ListaProyectos)
+            </td>
+         
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
