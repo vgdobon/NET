@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using CommonGestionTrabajadoresMVC.DTOs;
 using CommonGestionTrabajadoresMVC.Models;
 
+
 namespace CommonGestionTrabajadoresMVC.Controllers
 {
     public class JefesEquipoController : Controller
@@ -20,45 +21,47 @@ namespace CommonGestionTrabajadoresMVC.Controllers
         {
             List<JefesEquipo> jefesEquipo = db.JefesEquipo.Include(j => j.TrabajadoresDTecnico).ToList();
             List<JefeEquipoDTO> jefeEquipoDTOs = new List<JefeEquipoDTO>();
-            jefesEquipo.ForEach(x => jefeEquipoDTOs.Add(MapJefeEquipoDBToDTO(x)));
-            
+
+            foreach (JefesEquipo jeDB in jefesEquipo)
+            {
+                if(jeDB.TrabajadoresDTecnico.Trabajadores.Borrado == false)
+                {
+                    jefeEquipoDTOs.Add(MapJefeEquipoDBToDTO(jeDB));
+                }
+            }
+
             return View(jefeEquipoDTOs);
+        }
+
+        public TiposTecnologia MapTiposTecnologiaDTOtoDB(TipoTecnologiaDTO tipTecDTO, TiposTecnologia tipoTecnologia)
+        {
+            tipoTecnologia.Id = tipTecDTO.Id;
+            tipoTecnologia.Nombre = tipTecDTO.Nombre;
+            return tipoTecnologia;
         }
 
         public JefesEquipo MapJefeEquipoDTOToDB(JefeEquipoDTO jefeEquipoDTO, JefesEquipo jefesEquipoDB)
         {
-
-
 
             jefesEquipoDB.TrabajadoresDTecnico.Trabajadores.Dni = jefeEquipoDTO.Dni;
             jefesEquipoDB.TrabajadoresDTecnico.Trabajadores.Nombre = jefeEquipoDTO.Nombre;
             jefesEquipoDB.TrabajadoresDTecnico.Trabajadores.Apellidos = jefeEquipoDTO.Apellidos;
             jefesEquipoDB.TrabajadoresDTecnico.Trabajadores.FechaNacimiento = jefeEquipoDTO.FechaNacimiento;
             jefesEquipoDB.TrabajadoresDTecnico.Trabajadores.Direccion = jefeEquipoDTO.Direccion;
-            jefeEquipoDTO.FechaBaja = jefesEquipoDB.TrabajadoresDTecnico.Trabajadores.FechaBaja;
-            jefeEquipoDTO.AnyosExp = jefesEquipoDB.TrabajadoresDTecnico.AnyosExperiencia;
-
-            jefeEquipoDTO.ListaTecnologias = new List<TipoTecnologiaDTO>();
-            foreach (TiposTecnologia tipos in jefesEquipoDB.TrabajadoresDTecnico.TiposTecnologia)
+            jefesEquipoDB.TrabajadoresDTecnico.Trabajadores.FechaBaja = jefeEquipoDTO.FechaBaja;
+            jefesEquipoDB.TrabajadoresDTecnico.AnyosExperiencia = jefeEquipoDTO.AnyosExp;
+            jefesEquipoDB.TrabajadoresDTecnico.TiposTecnologia.Clear();
+            foreach (int tipo in jefeEquipoDTO.IdTecnologias)
             {
-                TipoTecnologiaDTO tipoTecnologiaDTO = new TipoTecnologiaDTO();
-                tipoTecnologiaDTO.Id = tipos.Id;
-                tipoTecnologiaDTO.Nombre = tipos.Nombre;
-                jefeEquipoDTO.ListaTecnologias.Add(tipoTecnologiaDTO);
+                TiposTecnologia tipoTecnologia = db.TiposTecnologia.FirstOrDefault(x => x.Id == tipo);
+                jefesEquipoDB.TrabajadoresDTecnico.TiposTecnologia.Add(tipoTecnologia);
             }
 
-            foreach (Proyectos proyectoDB in jefesEquipoDB.TrabajadoresDTecnico.Proyectos)
-            {
-                ProyectoDTO proyecto = new ProyectoDTO();
-                proyecto.Id = proyectoDB.Id;
-                proyecto.Nombre = proyectoDB.Nombre;
-                jefeEquipoDTO.ListaProyectos.Add(proyecto);
-            }
-
-            jefeEquipoDTO.TfnoEmpresa = jefesEquipoDB.TelefonoEmpresa;
+            jefesEquipoDB.TelefonoEmpresa = jefeEquipoDTO.TfnoEmpresa;
 
             return jefesEquipoDB;
         }
+
         public JefeEquipoDTO MapJefeEquipoDBToDTO(JefesEquipo jefesEquipoDB)
         {
             JefeEquipoDTO jefeEquipoDTO = new JefeEquipoDTO();
@@ -71,11 +74,12 @@ namespace CommonGestionTrabajadoresMVC.Controllers
             jefeEquipoDTO.FechaBaja = jefesEquipoDB.TrabajadoresDTecnico.Trabajadores.FechaBaja;
             jefeEquipoDTO.AnyosExp = jefesEquipoDB.TrabajadoresDTecnico.AnyosExperiencia;
 
-            jefeEquipoDTO.ListaTecnologias = new List<TipoTecnologiaDTO>();
+            jefeEquipoDTO.IdTecnologias = new List<int>();
             foreach (TiposTecnologia tipos in jefesEquipoDB.TrabajadoresDTecnico.TiposTecnologia){
                 TipoTecnologiaDTO tipoTecnologiaDTO = new TipoTecnologiaDTO();
                 tipoTecnologiaDTO.Id = tipos.Id;
                 tipoTecnologiaDTO.Nombre = tipos.Nombre;
+                jefeEquipoDTO.IdTecnologias.Add(tipos.Id);
                 jefeEquipoDTO.ListaTecnologias.Add(tipoTecnologiaDTO);
             }
 
@@ -110,7 +114,7 @@ namespace CommonGestionTrabajadoresMVC.Controllers
         // GET: JefesEquipo/Create
         public ActionResult Create()
         {
-            ViewBag.TecnologiaList = new SelectList(db.TiposTecnologia, "Id", "Nombre");
+            ViewBag.TecnologiaList = new MultiSelectList(db.TiposTecnologia, "Id", "Nombre");
             return View();
         }
 
@@ -119,17 +123,21 @@ namespace CommonGestionTrabajadoresMVC.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TelefonoEmpresa")] JefesEquipo jefesEquipo)
+        public ActionResult Create(JefeEquipoDTO jefeEquipoDTO)
         {
-            if (ModelState.IsValid)
-            {
-                db.JefesEquipo.Add(jefesEquipo);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            ViewBag.Id = new SelectList(db.TrabajadoresDTecnico, "Id", "Id", jefesEquipo.Id);
-            return View(jefesEquipo);
+            JefesEquipo jeDB = new JefesEquipo();
+            jeDB.TrabajadoresDTecnico = new TrabajadoresDTecnico();
+            jeDB.TrabajadoresDTecnico.Trabajadores = new Trabajadores();
+            MapJefeEquipoDTOToDB(jefeEquipoDTO, jeDB);
+
+
+            db.JefesEquipo.Add(jeDB);
+            db.Entry(jeDB).State = EntityState.Added;
+            db.SaveChanges();
+
+            ViewBag.TecnologiaList = new MultiSelectList(db.TiposTecnologia, "Id", "Nombre");
+            return RedirectToAction("Index");
         }
 
         // GET: JefesEquipo/Edit/5
@@ -144,7 +152,8 @@ namespace CommonGestionTrabajadoresMVC.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.Id = new SelectList(db.TrabajadoresDTecnico, "Id", "Id", jefesEquipo.Id);
+            ViewBag.TecnologiaList = new MultiSelectList(db.TiposTecnologia, "Id", "Nombre", jefesEquipoDTO.ListaTecnologias.Select(x => x.Id));
+            
             return View(jefesEquipoDTO);
         }
 
@@ -153,17 +162,20 @@ namespace CommonGestionTrabajadoresMVC.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,TelefonoEmpresa")] JefesEquipo jefesEquipo)
+        public ActionResult Edit(JefeEquipoDTO jefesEquipoDTO)
         {
+            JefesEquipo jeDB = db.JefesEquipo.Find(jefesEquipoDTO.Id);
+            MapJefeEquipoDTOToDB(jefesEquipoDTO , jeDB);
             if (ModelState.IsValid)
             {
-                db.Entry(jefesEquipo).State = EntityState.Modified;
+                db.Entry(jeDB).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Id = new SelectList(db.TrabajadoresDTecnico, "Id", "Id", jefesEquipo.Id);
-            return View(jefesEquipo);
+            ViewBag.TecnologiaList = new MultiSelectList(db.TiposTecnologia, "Id", "Nombre",jefesEquipoDTO.ListaTecnologias.Select(x => x.Id));
+            return View(jefesEquipoDTO);
         }
+
 
         // GET: JefesEquipo/Delete/5
         public ActionResult Delete(int? id)
@@ -185,8 +197,9 @@ namespace CommonGestionTrabajadoresMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            JefesEquipo jefesEquipo = db.JefesEquipo.Find(id);
-            db.JefesEquipo.Remove(jefesEquipo);
+            Trabajadores jefesEquipo = db.Trabajadores.Find(id);
+            jefesEquipo.Borrado = true;
+            db.Entry(jefesEquipo).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

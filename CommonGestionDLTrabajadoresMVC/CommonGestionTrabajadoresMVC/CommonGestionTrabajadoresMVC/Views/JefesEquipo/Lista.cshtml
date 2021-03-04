@@ -1,0 +1,37 @@
+﻿@using CommonGestionTrabajadoresMVC.DTOs;
+
+@{
+    ViewBag.Title = "Filtro";
+}
+
+<h2>Filtro</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>JefesEquipo</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input id="Filtro" class="form-control text-box single-line" name="Filtro" type="text" value="" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="Filtro" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Buscar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

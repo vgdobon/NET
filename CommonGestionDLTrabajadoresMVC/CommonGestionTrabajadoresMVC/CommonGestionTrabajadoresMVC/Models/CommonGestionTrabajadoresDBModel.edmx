@@ -1,0 +1,467 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CommonGestionTrabajadoresModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="JefesEquipo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Tfno" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proyectos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaLimite" Type="date" />
+        </EntityType>
+        <EntityType Name="Tecnicos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="JefeEquipoId" Type="int" Nullable="false" />
+          <Property Name="TareaActual" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TiposTecnologia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Trabajadores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dni" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellidos" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="datetime" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaBaja" Type="datetime" />
+          <Property Name="Borrado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrabajadoresDTecnico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="AnyosExperiencia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrabajadoresDTecnicoIdTiposTecnologia">
+          <Key>
+            <PropertyRef Name="TrabajadoresDTecnicoId" />
+            <PropertyRef Name="TiposTecnologiaId" />
+          </Key>
+          <Property Name="TrabajadoresDTecnicoId" Type="int" Nullable="false" />
+          <Property Name="TiposTecnologiaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrabajadoresDTecnicoProyectos">
+          <Key>
+            <PropertyRef Name="TrabajadorDTecnicoId" />
+            <PropertyRef Name="ProyectoId" />
+          </Key>
+          <Property Name="TrabajadorDTecnicoId" Type="int" Nullable="false" />
+          <Property Name="ProyectoId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_JefesEquipo_TrabajadoresDTecnico">
+          <End Role="TrabajadoresDTecnico" Type="Self.TrabajadoresDTecnico" Multiplicity="1" />
+          <End Role="JefesEquipo" Type="Self.JefesEquipo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TrabajadoresDTecnico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JefesEquipo">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tecnicos_JefesEquipo">
+          <End Role="JefesEquipo" Type="Self.JefesEquipo" Multiplicity="1" />
+          <End Role="Tecnicos" Type="Self.Tecnicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JefesEquipo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tecnicos">
+              <PropertyRef Name="JefeEquipoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tecnicos_TrabajadoresDTecnico">
+          <End Role="TrabajadoresDTecnico" Type="Self.TrabajadoresDTecnico" Multiplicity="1" />
+          <End Role="Tecnicos" Type="Self.Tecnicos" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TrabajadoresDTecnico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tecnicos">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajadoresDTecnico_Trabajadores">
+          <End Role="Trabajadores" Type="Self.Trabajadores" Multiplicity="1" />
+          <End Role="TrabajadoresDTecnico" Type="Self.TrabajadoresDTecnico" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajadores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrabajadoresDTecnico">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajadoresDTecnicoIdTiposTecnologia_TiposTecnologia">
+          <End Role="TiposTecnologia" Type="Self.TiposTecnologia" Multiplicity="1" />
+          <End Role="TrabajadoresDTecnicoIdTiposTecnologia" Type="Self.TrabajadoresDTecnicoIdTiposTecnologia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposTecnologia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrabajadoresDTecnicoIdTiposTecnologia">
+              <PropertyRef Name="TiposTecnologiaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajadoresDTecnicoIdTiposTecnologia_TrabajadoresDTecnico">
+          <End Role="TrabajadoresDTecnico" Type="Self.TrabajadoresDTecnico" Multiplicity="1" />
+          <End Role="TrabajadoresDTecnicoIdTiposTecnologia" Type="Self.TrabajadoresDTecnicoIdTiposTecnologia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrabajadoresDTecnico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrabajadoresDTecnicoIdTiposTecnologia">
+              <PropertyRef Name="TrabajadoresDTecnicoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajadoresDTecnicoProyectos_Proyectos">
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="1" />
+          <End Role="TrabajadoresDTecnicoProyectos" Type="Self.TrabajadoresDTecnicoProyectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyectos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrabajadoresDTecnicoProyectos">
+              <PropertyRef Name="ProyectoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajadoresDTecnicoProyectos_TrabajadoresDTecnico">
+          <End Role="TrabajadoresDTecnico" Type="Self.TrabajadoresDTecnico" Multiplicity="1" />
+          <End Role="TrabajadoresDTecnicoProyectos" Type="Self.TrabajadoresDTecnicoProyectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrabajadoresDTecnico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrabajadoresDTecnicoProyectos">
+              <PropertyRef Name="TrabajadorDTecnicoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CommonGestionTrabajadoresModelStoreContainer">
+          <EntitySet Name="JefesEquipo" EntityType="Self.JefesEquipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proyectos" EntityType="Self.Proyectos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tecnicos" EntityType="Self.Tecnicos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposTecnologia" EntityType="Self.TiposTecnologia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trabajadores" EntityType="Self.Trabajadores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrabajadoresDTecnico" EntityType="Self.TrabajadoresDTecnico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrabajadoresDTecnicoIdTiposTecnologia" EntityType="Self.TrabajadoresDTecnicoIdTiposTecnologia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrabajadoresDTecnicoProyectos" EntityType="Self.TrabajadoresDTecnicoProyectos" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_JefesEquipo_TrabajadoresDTecnico" Association="Self.FK_JefesEquipo_TrabajadoresDTecnico">
+            <End Role="TrabajadoresDTecnico" EntitySet="TrabajadoresDTecnico" />
+            <End Role="JefesEquipo" EntitySet="JefesEquipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tecnicos_JefesEquipo" Association="Self.FK_Tecnicos_JefesEquipo">
+            <End Role="JefesEquipo" EntitySet="JefesEquipo" />
+            <End Role="Tecnicos" EntitySet="Tecnicos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tecnicos_TrabajadoresDTecnico" Association="Self.FK_Tecnicos_TrabajadoresDTecnico">
+            <End Role="TrabajadoresDTecnico" EntitySet="TrabajadoresDTecnico" />
+            <End Role="Tecnicos" EntitySet="Tecnicos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajadoresDTecnico_Trabajadores" Association="Self.FK_TrabajadoresDTecnico_Trabajadores">
+            <End Role="Trabajadores" EntitySet="Trabajadores" />
+            <End Role="TrabajadoresDTecnico" EntitySet="TrabajadoresDTecnico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajadoresDTecnicoIdTiposTecnologia_TiposTecnologia" Association="Self.FK_TrabajadoresDTecnicoIdTiposTecnologia_TiposTecnologia">
+            <End Role="TiposTecnologia" EntitySet="TiposTecnologia" />
+            <End Role="TrabajadoresDTecnicoIdTiposTecnologia" EntitySet="TrabajadoresDTecnicoIdTiposTecnologia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajadoresDTecnicoIdTiposTecnologia_TrabajadoresDTecnico" Association="Self.FK_TrabajadoresDTecnicoIdTiposTecnologia_TrabajadoresDTecnico">
+            <End Role="TrabajadoresDTecnico" EntitySet="TrabajadoresDTecnico" />
+            <End Role="TrabajadoresDTecnicoIdTiposTecnologia" EntitySet="TrabajadoresDTecnicoIdTiposTecnologia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajadoresDTecnicoProyectos_Proyectos" Association="Self.FK_TrabajadoresDTecnicoProyectos_Proyectos">
+            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End Role="TrabajadoresDTecnicoProyectos" EntitySet="TrabajadoresDTecnicoProyectos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajadoresDTecnicoProyectos_TrabajadoresDTecnico" Association="Self.FK_TrabajadoresDTecnicoProyectos_TrabajadoresDTecnico">
+            <End Role="TrabajadoresDTecnico" EntitySet="TrabajadoresDTecnico" />
+            <End Role="TrabajadoresDTecnicoProyectos" EntitySet="TrabajadoresDTecnicoProyectos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CommonGestionTrabajadoresModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CommonGestionTrabajadoresEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="JefesEquipo" EntityType="CommonGestionTrabajadoresModel.JefesEquipo" />
+          <EntitySet Name="Proyectos" EntityType="CommonGestionTrabajadoresModel.Proyectos" />
+          <EntitySet Name="Tecnicos" EntityType="CommonGestionTrabajadoresModel.Tecnicos" />
+          <EntitySet Name="TiposTecnologia" EntityType="CommonGestionTrabajadoresModel.TiposTecnologia" />
+          <EntitySet Name="Trabajadores" EntityType="CommonGestionTrabajadoresModel.Trabajadores" />
+          <EntitySet Name="TrabajadoresDTecnico" EntityType="CommonGestionTrabajadoresModel.TrabajadoresDTecnico" />
+          <AssociationSet Name="FK_JefesEquipo_TrabajadoresDTecnico" Association="CommonGestionTrabajadoresModel.FK_JefesEquipo_TrabajadoresDTecnico">
+            <End Role="TrabajadoresDTecnico" EntitySet="TrabajadoresDTecnico" />
+            <End Role="JefesEquipo" EntitySet="JefesEquipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tecnicos_JefesEquipo" Association="CommonGestionTrabajadoresModel.FK_Tecnicos_JefesEquipo">
+            <End Role="JefesEquipo" EntitySet="JefesEquipo" />
+            <End Role="Tecnicos" EntitySet="Tecnicos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tecnicos_TrabajadoresDTecnico" Association="CommonGestionTrabajadoresModel.FK_Tecnicos_TrabajadoresDTecnico">
+            <End Role="TrabajadoresDTecnico" EntitySet="TrabajadoresDTecnico" />
+            <End Role="Tecnicos" EntitySet="Tecnicos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajadoresDTecnico_Trabajadores" Association="CommonGestionTrabajadoresModel.FK_TrabajadoresDTecnico_Trabajadores">
+            <End Role="Trabajadores" EntitySet="Trabajadores" />
+            <End Role="TrabajadoresDTecnico" EntitySet="TrabajadoresDTecnico" />
+          </AssociationSet>
+          <AssociationSet Name="TrabajadoresDTecnicoIdTiposTecnologia" Association="CommonGestionTrabajadoresModel.TrabajadoresDTecnicoIdTiposTecnologia">
+            <End Role="TiposTecnologia" EntitySet="TiposTecnologia" />
+            <End Role="TrabajadoresDTecnico" EntitySet="TrabajadoresDTecnico" />
+          </AssociationSet>
+          <AssociationSet Name="TrabajadoresDTecnicoProyectos" Association="CommonGestionTrabajadoresModel.TrabajadoresDTecnicoProyectos">
+            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End Role="TrabajadoresDTecnico" EntitySet="TrabajadoresDTecnico" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="JefesEquipo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Tfno" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TrabajadoresDTecnico" Relationship="CommonGestionTrabajadoresModel.FK_JefesEquipo_TrabajadoresDTecnico" FromRole="JefesEquipo" ToRole="TrabajadoresDTecnico" />
+          <NavigationProperty Name="Tecnicos" Relationship="CommonGestionTrabajadoresModel.FK_Tecnicos_JefesEquipo" FromRole="JefesEquipo" ToRole="Tecnicos" />
+        </EntityType>
+        <EntityType Name="Proyectos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaLimite" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TrabajadoresDTecnico" Relationship="CommonGestionTrabajadoresModel.TrabajadoresDTecnicoProyectos" FromRole="Proyectos" ToRole="TrabajadoresDTecnico" />
+        </EntityType>
+        <EntityType Name="Tecnicos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="JefeEquipoId" Type="Int32" Nullable="false" />
+          <Property Name="TareaActual" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="JefesEquipo" Relationship="CommonGestionTrabajadoresModel.FK_Tecnicos_JefesEquipo" FromRole="Tecnicos" ToRole="JefesEquipo" />
+          <NavigationProperty Name="TrabajadoresDTecnico" Relationship="CommonGestionTrabajadoresModel.FK_Tecnicos_TrabajadoresDTecnico" FromRole="Tecnicos" ToRole="TrabajadoresDTecnico" />
+        </EntityType>
+        <EntityType Name="TiposTecnologia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TrabajadoresDTecnico" Relationship="CommonGestionTrabajadoresModel.TrabajadoresDTecnicoIdTiposTecnologia" FromRole="TiposTecnologia" ToRole="TrabajadoresDTecnico" />
+        </EntityType>
+        <EntityType Name="Trabajadores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dni" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Apellidos" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaBaja" Type="DateTime" Precision="3" />
+          <Property Name="Borrado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TrabajadoresDTecnico" Relationship="CommonGestionTrabajadoresModel.FK_TrabajadoresDTecnico_Trabajadores" FromRole="Trabajadores" ToRole="TrabajadoresDTecnico" />
+        </EntityType>
+        <EntityType Name="TrabajadoresDTecnico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="AnyosExperiencia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="JefesEquipo" Relationship="CommonGestionTrabajadoresModel.FK_JefesEquipo_TrabajadoresDTecnico" FromRole="TrabajadoresDTecnico" ToRole="JefesEquipo" />
+          <NavigationProperty Name="Tecnicos" Relationship="CommonGestionTrabajadoresModel.FK_Tecnicos_TrabajadoresDTecnico" FromRole="TrabajadoresDTecnico" ToRole="Tecnicos" />
+          <NavigationProperty Name="Trabajadores" Relationship="CommonGestionTrabajadoresModel.FK_TrabajadoresDTecnico_Trabajadores" FromRole="TrabajadoresDTecnico" ToRole="Trabajadores" />
+          <NavigationProperty Name="TiposTecnologia" Relationship="CommonGestionTrabajadoresModel.TrabajadoresDTecnicoIdTiposTecnologia" FromRole="TrabajadoresDTecnico" ToRole="TiposTecnologia" />
+          <NavigationProperty Name="Proyectos" Relationship="CommonGestionTrabajadoresModel.TrabajadoresDTecnicoProyectos" FromRole="TrabajadoresDTecnico" ToRole="Proyectos" />
+        </EntityType>
+        <Association Name="FK_JefesEquipo_TrabajadoresDTecnico">
+          <End Type="CommonGestionTrabajadoresModel.TrabajadoresDTecnico" Role="TrabajadoresDTecnico" Multiplicity="1" />
+          <End Type="CommonGestionTrabajadoresModel.JefesEquipo" Role="JefesEquipo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TrabajadoresDTecnico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JefesEquipo">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tecnicos_JefesEquipo">
+          <End Type="CommonGestionTrabajadoresModel.JefesEquipo" Role="JefesEquipo" Multiplicity="1" />
+          <End Type="CommonGestionTrabajadoresModel.Tecnicos" Role="Tecnicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JefesEquipo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tecnicos">
+              <PropertyRef Name="JefeEquipoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tecnicos_TrabajadoresDTecnico">
+          <End Type="CommonGestionTrabajadoresModel.TrabajadoresDTecnico" Role="TrabajadoresDTecnico" Multiplicity="1" />
+          <End Type="CommonGestionTrabajadoresModel.Tecnicos" Role="Tecnicos" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TrabajadoresDTecnico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tecnicos">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajadoresDTecnico_Trabajadores">
+          <End Type="CommonGestionTrabajadoresModel.Trabajadores" Role="Trabajadores" Multiplicity="1" />
+          <End Type="CommonGestionTrabajadoresModel.TrabajadoresDTecnico" Role="TrabajadoresDTecnico" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajadores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrabajadoresDTecnico">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TrabajadoresDTecnicoIdTiposTecnologia">
+          <End Type="CommonGestionTrabajadoresModel.TiposTecnologia" Role="TiposTecnologia" Multiplicity="*" />
+          <End Type="CommonGestionTrabajadoresModel.TrabajadoresDTecnico" Role="TrabajadoresDTecnico" Multiplicity="*" />
+        </Association>
+        <Association Name="TrabajadoresDTecnicoProyectos">
+          <End Type="CommonGestionTrabajadoresModel.Proyectos" Role="Proyectos" Multiplicity="*" />
+          <End Type="CommonGestionTrabajadoresModel.TrabajadoresDTecnico" Role="TrabajadoresDTecnico" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CommonGestionTrabajadoresModelStoreContainer" CdmEntityContainer="CommonGestionTrabajadoresEntities">
+          <EntitySetMapping Name="JefesEquipo">
+            <EntityTypeMapping TypeName="CommonGestionTrabajadoresModel.JefesEquipo">
+              <MappingFragment StoreEntitySet="JefesEquipo">
+                <ScalarProperty Name="Tfno" ColumnName="Tfno" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proyectos">
+            <EntityTypeMapping TypeName="CommonGestionTrabajadoresModel.Proyectos">
+              <MappingFragment StoreEntitySet="Proyectos">
+                <ScalarProperty Name="FechaLimite" ColumnName="FechaLimite" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tecnicos">
+            <EntityTypeMapping TypeName="CommonGestionTrabajadoresModel.Tecnicos">
+              <MappingFragment StoreEntitySet="Tecnicos">
+                <ScalarProperty Name="TareaActual" ColumnName="TareaActual" />
+                <ScalarProperty Name="JefeEquipoId" ColumnName="JefeEquipoId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposTecnologia">
+            <EntityTypeMapping TypeName="CommonGestionTrabajadoresModel.TiposTecnologia">
+              <MappingFragment StoreEntitySet="TiposTecnologia">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trabajadores">
+            <EntityTypeMapping TypeName="CommonGestionTrabajadoresModel.Trabajadores">
+              <MappingFragment StoreEntitySet="Trabajadores">
+                <ScalarProperty Name="Borrado" ColumnName="Borrado" />
+                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Dni" ColumnName="Dni" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrabajadoresDTecnico">
+            <EntityTypeMapping TypeName="CommonGestionTrabajadoresModel.TrabajadoresDTecnico">
+              <MappingFragment StoreEntitySet="TrabajadoresDTecnico">
+                <ScalarProperty Name="AnyosExperiencia" ColumnName="AnyosExperiencia" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="TrabajadoresDTecnicoIdTiposTecnologia" TypeName="CommonGestionTrabajadoresModel.TrabajadoresDTecnicoIdTiposTecnologia" StoreEntitySet="TrabajadoresDTecnicoIdTiposTecnologia">
+            <EndProperty Name="TrabajadoresDTecnico">
+              <ScalarProperty Name="Id" ColumnName="TrabajadoresDTecnicoId" />
+            </EndProperty>
+            <EndProperty Name="TiposTecnologia">
+              <ScalarProperty Name="Id" ColumnName="TiposTecnologiaId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="TrabajadoresDTecnicoProyectos" TypeName="CommonGestionTrabajadoresModel.TrabajadoresDTecnicoProyectos" StoreEntitySet="TrabajadoresDTecnicoProyectos">
+            <EndProperty Name="TrabajadoresDTecnico">
+              <ScalarProperty Name="Id" ColumnName="TrabajadorDTecnicoId" />
+            </EndProperty>
+            <EndProperty Name="Proyectos">
+              <ScalarProperty Name="Id" ColumnName="ProyectoId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

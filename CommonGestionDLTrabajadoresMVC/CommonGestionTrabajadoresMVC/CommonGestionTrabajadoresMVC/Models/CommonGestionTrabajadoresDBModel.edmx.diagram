@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bf97b2d7b4a24a5ba6b444c6356ca93c" Name="Diagram1">
+        <EntityTypeShape EntityType="CommonGestionTrabajadoresModel.JefesEquipo" Width="1.5" PointX="5.25" PointY="1.25" />
+        <EntityTypeShape EntityType="CommonGestionTrabajadoresModel.Proyectos" Width="2.25" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CommonGestionTrabajadoresModel.Tecnicos" Width="1.5" PointX="7.5" PointY="1.125" />
+        <EntityTypeShape EntityType="CommonGestionTrabajadoresModel.TiposTecnologia" Width="1.5" PointX="0.5" PointY="1" />
+        <EntityTypeShape EntityType="CommonGestionTrabajadoresModel.Trabajadores" Width="1.5" PointX="5.125" PointY="3.875" />
+        <EntityTypeShape EntityType="CommonGestionTrabajadoresModel.TrabajadoresDTecnico" Width="2" PointX="2.375" PointY="0.875" />
+        <AssociationConnector Association="CommonGestionTrabajadoresModel.FK_JefesEquipo_TrabajadoresDTecnico" />
+        <AssociationConnector Association="CommonGestionTrabajadoresModel.FK_Tecnicos_JefesEquipo" />
+        <AssociationConnector Association="CommonGestionTrabajadoresModel.FK_Tecnicos_TrabajadoresDTecnico" />
+        <AssociationConnector Association="CommonGestionTrabajadoresModel.FK_TrabajadoresDTecnico_Trabajadores" />
+        <AssociationConnector Association="CommonGestionTrabajadoresModel.TrabajadoresDTecnicoIdTiposTecnologia" />
+        <AssociationConnector Association="CommonGestionTrabajadoresModel.TrabajadoresDTecnicoProyectos" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

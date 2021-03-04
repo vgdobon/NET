@@ -1,7 +1,5 @@
 ﻿@model CommonGestionTrabajadoresMVC.DTOs.JefeEquipoDTO
 
-
-
 @{
     ViewBag.Title = "Create";
 }
@@ -83,7 +81,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ListaTecnologias, "Tecnologia", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Tecnologias",(SelectList) ViewBag.TecnologiaList)
+               
+                @Html.ListBox("IdTecnologias", (MultiSelectList)ViewBag.TecnologiaList)
                 @Html.ValidationMessageFor(model => model.ListaTecnologias, "", new { @class = "text-danger" })
             </div>
         </div>

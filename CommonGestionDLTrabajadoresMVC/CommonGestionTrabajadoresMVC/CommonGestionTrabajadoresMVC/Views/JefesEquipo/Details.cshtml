@@ -1,0 +1,101 @@
+﻿@using CommonGestionTrabajadoresMVC.DTOs;
+@model JefeEquipoDTO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>JefesEquipo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellidos)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaNacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaNacimiento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TfnoEmpresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TfnoEmpresa)
+        </dd>
+
+
+        @if (Model.FechaBaja != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaBaja)
+            </dt>
+            <dd>
+                Model.FechaBaja
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnyosExp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnyosExp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ListaTecnologias)
+        </dt>
+        @foreach (var item in Model.ListaTecnologias)
+        {
+            <dd>
+                @item.Nombre
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ListaProyectos)
+        </dt>
+        @foreach (var item in Model.ListaProyectos)
+        {
+            <dd>
+                @item.Nombre
+            </dd>
+        }
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
