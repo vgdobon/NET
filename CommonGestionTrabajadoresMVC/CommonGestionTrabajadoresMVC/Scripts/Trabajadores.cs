@@ -7,23 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CommonGestionTrabajadoresMVC.Models
+namespace CommonGestionTrabajadoresMVC.Scripts
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class TiposTecnologia
+    public partial class Trabajadores
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TiposTecnologia()
-        {
-            this.TrabajadoresDTecnico = new HashSet<TrabajadoresDTecnico>();
-        }
-    
         public int Id { get; set; }
+        public string Dni { get; set; }
         public string Nombre { get; set; }
+        public string Apellidos { get; set; }
+        public System.DateTime FechaNacimiento { get; set; }
+        public string Direccion { get; set; }
+        public Nullable<System.DateTime> FechaBaja { get; set; }
+        public bool Borrado { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TrabajadoresDTecnico> TrabajadoresDTecnico { get; set; }
+        public virtual TrabajadoresDTecnico TrabajadoresDTecnico { get; set; }
     }
 }

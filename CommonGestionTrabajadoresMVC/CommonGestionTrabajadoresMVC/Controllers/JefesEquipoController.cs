@@ -51,6 +51,7 @@ namespace CommonGestionTrabajadoresMVC.Controllers
             jefesEquipoDB.TrabajadoresDTecnico.Trabajadores.FechaBaja = jefeEquipoDTO.FechaBaja;
             jefesEquipoDB.TrabajadoresDTecnico.AnyosExperiencia = jefeEquipoDTO.AnyosExp;
             jefesEquipoDB.TrabajadoresDTecnico.TiposTecnologia.Clear();
+
             foreach (int tipo in jefeEquipoDTO.IdTecnologias)
             {
                 TiposTecnologia tipoTecnologia = db.TiposTecnologia.FirstOrDefault(x => x.Id == tipo);

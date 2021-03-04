@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\CommonGestionTrabajadoresMVC",
+    "\\CommonGestionTrabajadoresMVC\\Controllers",
+    "\\CommonGestionTrabajadoresMVC\\Views\\Home"
   ],
-  "SelectedNode": "\\CommonGestionTrabajadoresMVC.sln",
+  "SelectedNode": "\\CommonGestionTrabajadoresMVC\\Controllers\\JefesEquipoController.cs",
   "PreviewInSolutionExplorer": false
 }

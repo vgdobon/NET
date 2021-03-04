@@ -7,24 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CommonGestionTrabajadoresMVC.Models
+namespace CommonGestionTrabajadoresMVC.Scripts
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class JefesEquipo
+    public partial class TrabajadoresDTecnico
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public JefesEquipo()
+        public TrabajadoresDTecnico()
         {
-            this.Tecnicos = new HashSet<Tecnicos>();
+            this.Proyectos = new HashSet<Proyectos>();
+            this.TiposTecnologia = new HashSet<TiposTecnologia>();
         }
     
         public int Id { get; set; }
-        public string TelefonoEmpresa { get; set; }
+        public int AnyosExperiencia { get; set; }
     
-        public virtual TrabajadoresDTecnico TrabajadoresDTecnico { get; set; }
+        public virtual JefesEquipo JefesEquipo { get; set; }
+        public virtual Tecnicos Tecnicos { get; set; }
+        public virtual Trabajadores Trabajadores { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tecnicos> Tecnicos { get; set; }
+        public virtual ICollection<Proyectos> Proyectos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TiposTecnologia> TiposTecnologia { get; set; }
     }
 }

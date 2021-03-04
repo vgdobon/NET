@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CommonGestionTrabajadoresMVC.Models
+namespace CommonGestionTrabajadoresMVC.Scripts
 {
     using System;
     using System.Collections.Generic;

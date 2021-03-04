@@ -7,22 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CommonGestionTrabajadoresMVC.Models
+namespace CommonGestionTrabajadoresMVC.Scripts
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Trabajadores
+    public partial class Tecnicos
     {
         public int Id { get; set; }
-        public string Dni { get; set; }
-        public string Nombre { get; set; }
-        public string Apellidos { get; set; }
-        public System.DateTime FechaNacimiento { get; set; }
-        public string Direccion { get; set; }
-        public Nullable<System.DateTime> FechaBaja { get; set; }
-        public bool Borrado { get; set; }
+        public int JefeEquipoId { get; set; }
+        public string TareaActual { get; set; }
     
+        public virtual JefesEquipo JefesEquipo { get; set; }
         public virtual TrabajadoresDTecnico TrabajadoresDTecnico { get; set; }
     }
 }

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CommonGestionTrabajadoresModelStoreContainer" CdmEntityContainer="CommonGestionTrabajadoresEntities1">
+    <EntitySetMapping Name="JefesEquipo">
+      <EntityTypeMapping TypeName="CommonGestionTrabajadoresModel.JefesEquipo">
+        <MappingFragment StoreEntitySet="JefesEquipo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TelefonoEmpresa" ColumnName="TelefonoEmpresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Proyectos">
+      <EntityTypeMapping TypeName="CommonGestionTrabajadoresModel.Proyectos">
+        <MappingFragment StoreEntitySet="Proyectos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="FechaLimite" ColumnName="FechaLimite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tecnicos">
+      <EntityTypeMapping TypeName="CommonGestionTrabajadoresModel.Tecnicos">
+        <MappingFragment StoreEntitySet="Tecnicos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="JefeEquipoId" ColumnName="JefeEquipoId" />
+          <ScalarProperty Name="TareaActual" ColumnName="TareaActual" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TiposTecnologia">
+      <EntityTypeMapping TypeName="CommonGestionTrabajadoresModel.TiposTecnologia">
+        <MappingFragment StoreEntitySet="TiposTecnologia">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trabajadores">
+      <EntityTypeMapping TypeName="CommonGestionTrabajadoresModel.Trabajadores">
+        <MappingFragment StoreEntitySet="Trabajadores">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Dni" ColumnName="Dni" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+          <ScalarProperty Name="Borrado" ColumnName="Borrado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrabajadoresDTecnico">
+      <EntityTypeMapping TypeName="CommonGestionTrabajadoresModel.TrabajadoresDTecnico">
+        <MappingFragment StoreEntitySet="TrabajadoresDTecnico">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AnyosExperiencia" ColumnName="AnyosExperiencia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="TrabajadoresDTecnicoProyectos" TypeName="CommonGestionTrabajadoresModel.TrabajadoresDTecnicoProyectos" StoreEntitySet="TrabajadoresDTecnicoProyectos">
+      <EndProperty Name="Proyectos">
+        <ScalarProperty Name="Id" ColumnName="ProyectoId" />
+      </EndProperty>
+      <EndProperty Name="TrabajadoresDTecnico">
+        <ScalarProperty Name="Id" ColumnName="TrabajadorDTecnicoId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TrabajadoresDTecnicoTecnologias" TypeName="CommonGestionTrabajadoresModel.TrabajadoresDTecnicoTecnologias" StoreEntitySet="TrabajadoresDTecnicoTecnologias">
+      <EndProperty Name="TiposTecnologia">
+        <ScalarProperty Name="Id" ColumnName="TiposTecnologiaId" />
+      </EndProperty>
+      <EndProperty Name="TrabajadoresDTecnico">
+        <ScalarProperty Name="Id" ColumnName="TrabajadoresDTecnicoId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

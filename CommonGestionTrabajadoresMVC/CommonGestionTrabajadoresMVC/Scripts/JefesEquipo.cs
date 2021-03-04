@@ -7,18 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CommonGestionTrabajadoresMVC.Models
+namespace CommonGestionTrabajadoresMVC.Scripts
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Tecnicos
+    public partial class JefesEquipo
     {
-        public int Id { get; set; }
-        public int JefeEquipoId { get; set; }
-        public string TareaActual { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public JefesEquipo()
+        {
+            this.Tecnicos = new HashSet<Tecnicos>();
+        }
     
-        public virtual JefesEquipo JefesEquipo { get; set; }
+        public int Id { get; set; }
+        public string TelefonoEmpresa { get; set; }
+    
         public virtual TrabajadoresDTecnico TrabajadoresDTecnico { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tecnicos> Tecnicos { get; set; }
     }
 }
